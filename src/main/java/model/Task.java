@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Task {
+    private Long id;
     private String title;
     private String description;
     private Priority priority;
@@ -11,7 +12,6 @@ public class Task {
     private boolean isCompleted;
 
 
-    // Конструктор
 
     public Task(String title, String description, model.Priority priority, LocalDateTime deadline){
         if (title == null || title.isBlank()){
@@ -26,7 +26,8 @@ public class Task {
         this.deadline = deadline;
         this.isCompleted = false;
     }
-
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     public String getTitle() {
         return title;
     }
@@ -46,6 +47,7 @@ public class Task {
     public boolean isCompleted() {
         return isCompleted;
     }
+    public void setCompleted(boolean completed) { isCompleted = completed; }
 
     public void setDescription(String description) {
         this.description = description;

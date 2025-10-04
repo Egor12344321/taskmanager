@@ -1,11 +1,11 @@
 import java.util.Scanner;
 import service.TaskManager;
-
+import service.FileTaskStorage;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskManager taskManager = new TaskManager(scanner);
-
+        FileTaskStorage fileTaskStorage = new FileTaskStorage();
         try {
             System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
             System.out.println("=== ПЛАНИРОВЩИК ЗАДАЧ ===");
@@ -16,7 +16,9 @@ public class Main {
                 System.out.println("4. Фильтрация задач");
                 System.out.println("5. Отредактировать задачу");
                 System.out.println("6. Удалить задачу");
-                System.out.println("7. Выход");
+                System.out.println("7. Выгрузить задачи в файл");
+                System.out.println("8. Получить задачи из файла");
+                System.out.println("9. Выход");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -82,6 +84,19 @@ public class Main {
                         }
                         break;
                     case 7:
+                        if (TaskManager.tasks.isEmpty()){
+                            System.out.println("Список задач пуст");
+                            break;
+                        }else {
+                            fileTaskStorage.saveTasks();
+                            System.out.println("Задачи успешно выгружены");
+                        }
+                        break;
+                    case 8:
+                        fileTaskStorage.loadTasks();
+                        System.out.println("Задачи из файла выгружены");
+                        break;
+                    case 9:
                         System.out.println("Выход из программы");
                         return;
                     default:
